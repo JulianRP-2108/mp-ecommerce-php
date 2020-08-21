@@ -16,7 +16,7 @@ Recibiendo notificaciones
    else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
        $myfile = fopen("notificacion.txt", "r") or die("No se puede leer el archivo!");
 
-       $contenido=fread($myfile,filesize($myfile));
+       $contenido=fread($myfile,filesize("notificacion.txt"));
        var_dump($contenido);
        fclose($myfile);
    }
