@@ -70,7 +70,7 @@
     }
 
     $preference->external_reference="rodriguezpetzjulian@gmail.com";
-    $preference->notification_url="https://julian-rp-mp-ecommerce-php.herokuapp.com/notificaciones.php";
+    $preference->notification_url="https://julian-rp-mp-ecommerce-php.herokuapp.com/notificaciones.php?source_news=webhooks";
 
     $preference->payer = $payer;
     $preference->payment_methods = $paymentMethods;
