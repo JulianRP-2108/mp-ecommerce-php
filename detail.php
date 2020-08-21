@@ -59,8 +59,8 @@
         $item->id=$idProducto = 1234;
         $item->title=$_POST['title'];
         $item->currency_id="ARS";
-        $item->picture_url=$_POST['img'];
-        $item->descripcion="Dispositivo móvil de Tienda e-commerce";
+        $item->picture_url="https://julian-rp-mp-ecommerce-php.herokuapp.com/".substr($_POST['img'], 1);
+        $item->descripcion='Dispositivo móvil de Tienda e-commerce';
         $item->unit_price=$_POST['price'];
         $item->quantity=$_POST['unit'];
 
