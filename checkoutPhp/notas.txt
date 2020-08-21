@@ -1,2 +1,0 @@
-Maximo de 6 cuotas
-- No permitir pagos de: American Express ni tampoco de cajero automatico

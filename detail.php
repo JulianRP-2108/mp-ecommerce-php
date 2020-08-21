@@ -7,15 +7,14 @@
     <?php
     // SDK de Mercado Pago
     require __DIR__ .  '/vendor/autoload.php';
-    require_once "checkoutPhp/verificador.php";
 
     // Agrega credenciales
     MercadoPago\SDK::setAccessToken('APP_USR-894658496562814-061920-4c4e8dedca24e63d3e92cda4c1e5df8e-562339626');
 
     // Crea un objeto de preferencia
     $preference = new MercadoPago\Preference();
-    $paymentMethods=new MercadoPago\PaymentMethod();
-    $item = new MercadoPago\Item();
+    $paymentMethods = new MercadoPago\PaymentMethod();
+    $payer = new MercadoPago\Payer();
     
     $paymentMethods = array(
         "excluded_payment_methods" => array(
@@ -26,41 +25,46 @@
         ),
         "installments" => 6
     );
-
+    
     
     
     // Crea un ítem en la preferencia
     //img, title, price, unit
+    $payer->name = "Lalo";
+    $payer->surname = "Landa";
+    $payer->email = "test_user_63274575@testuser.com";
+    $payer->phone = array(
+        "area_code" => "11",
+        "number" => "22223333"
+    );
+    $payer->address = array(
+        "street_name" => "False",
+        "street_number" => 123,
+        "zip_code" => "1111"
+    );
+    $payer->surname = "Landa";
     
-    $verificador = new Verificador();
-    $pasoControles = $verificador->controlarFormulario($_REQUEST);
-    if ($pasoControles) {
-        $payer=new MercadoPago\Payer();
-        $payer->name="Lalo";
-        $payer->surname="Landa";
-        $payer->email="test_user_63274575@testuser.com";
-        $payer->phone=array(
-            "area_code" => "11",
-            "number" => "22223333"
-        );
-        $payer->address=array(
-            "street_name" => "False",
-            "street_number" => 123,
-            "zip_code" => "1111"
-        );
-        $payer->surname="Landa";
+    $item = new MercadoPago\Item();
+    if (isset($_POST['img']) && isset($_POST['title']) && isset($_POST['price']) && isset($_POST['unit'])) {
+        $item->id=$idProducto = 1234;
+        $item->title=$_POST['title'];
+        $item->currency_id="ARS";
+        $item->picture_url=$_POST['img'];
+        $item->descripcion="Dispositivo móvil de Tienda e-commerce";
+        $item->unit_price=$_POST['price'];
+        $item->quantity=$_POST['unit'];
 
-
-        //$idProducto = 1234;
-        //$item->title = 'Mi producto';
-        //$item->quantity = 1;
-        //$item->unit_price = 75.56;
-
+        
     } else {
-        //REDIRECCIONAR A PAGINA ANTERIOR CON UN ERROR
+        
     }
 
-    $preference->payment_methods=$paymentMethods;
+    $item->title = 'Mi producto';
+    $item->quantity = 1;
+    $item->unit_price = 75.56;
+
+    $preference->payer = $payer;
+    $preference->payment_methods = $paymentMethods;
     $preference->items = array($item);
     $preference->save();
     ?>
@@ -606,6 +610,7 @@
                                     <form action="/procesar-pago" method="POST">
                                         <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-button-label="Pagar la compra" data-preference-id="<?php echo $preference->id; ?>">
                                         </script>
+                                        <a href="<?php echo $preference->init_point; ?>">Pagar la compra</a>
                                     </form>
                                 </div>
                             </div>
