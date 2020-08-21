@@ -1,7 +1,6 @@
 Recibiendo notificaciones
 
 <?php
-    http_response_code(200);
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,11 +28,12 @@ Recibiendo notificaciones
         fwrite($myfile, $txt);
         fclose($myfile);
     }
-
+    
     $myfile = fopen("info.txt", "w") or die("Unable to open file!");
     $txt = json_encode($_REQUEST);
     fwrite($myfile, $txt);
     fclose($myfile);
-
-
-?>
+    
+    http_response_code(200);
+    
+    ?>
