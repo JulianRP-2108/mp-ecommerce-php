@@ -3,7 +3,7 @@ Recibiendo notificaciones
 <?php
 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $myfile = fopen("info1.txt", "w") or die("Unable to open file!");
         /*
         $data = array(
@@ -22,7 +22,7 @@ Recibiendo notificaciones
         fwrite($myfile2, $txt2);
         fclose($myfile2);
     }
-    else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $myfile = fopen("info2.txt", "w") or die("Unable to open file!");
         $txt = json_encode($_GET);
         fwrite($myfile, $txt);
