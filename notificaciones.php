@@ -8,7 +8,7 @@ Recibiendo notificaciones
         $myfile = fopen("notificacion.txt", "w+") or die("Unable to open file!");
         
         //$txt = file_get_contents('php://input');
-        $json=json_encode($_POST);
+        $json=json_encode($_REQUEST);
         fwrite($myfile, $json);
         
         fclose($myfile);
