@@ -66,7 +66,7 @@
 
         
     } else {
-        echo("Entre al else");
+        header('Location: https://julian-rp-mp-ecommerce-php.herokuapp.com/');
     }
 
     $preference->external_reference="rodriguezpetzjulian@gmail.com";
