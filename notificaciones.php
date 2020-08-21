@@ -16,6 +16,7 @@ Recibiendo notificaciones
             "json",
             json_encode($_POST)
         );
+        echo("Envie el mail");
     } catch (\Throwable $th) {
         echo("Ocurrio un error");
         var_dump($th);
