@@ -3,6 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://www.mercadopago.com/v2/security.js" view="item"></script>
 
     <?php
     // SDK de Mercado Pago
@@ -10,6 +11,7 @@
 
     // Agrega credenciales
     MercadoPago\SDK::setAccessToken('APP_USR-894658496562814-061920-4c4e8dedca24e63d3e92cda4c1e5df8e-562339626');
+    MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 
     // Crea un objeto de preferencia
     $preference = new MercadoPago\Preference();
@@ -27,13 +29,9 @@
     );
 
     $preference->back_urls = array(
-        //"success" => "https://julian-rp-mp-ecommerce-php.herokuapp.com/success.php",
-        //"failure" => "https://julian-rp-mp-ecommerce-php.herokuapp.com/failure.php",
-        //"pending" => "https://julian-rp-mp-ecommerce-php.herokuapp.com/pending.php"
-
-        "success" => "http://localhost/mp-ecommerce-php/success.php",
-        "failure" => "http://localhost/mp-ecommerce-php/failure.php",
-        "pending" => "http://localhost/mp-ecommerce-php/pending.php"
+        "success" => "https://julian-rp-mp-ecommerce-php.herokuapp.com/success.php",
+        "failure" => "https://julian-rp-mp-ecommerce-php.herokuapp.com/failure.php",
+        "pending" => "https://julian-rp-mp-ecommerce-php.herokuapp.com/pending.php"
 
     );
     $preference->auto_return = "approved";
@@ -72,6 +70,7 @@
     }
 
     $preference->external_reference="rodriguezpetzjulian@gmail.com";
+    $preference->notification_url="https://julian-rp-mp-ecommerce-php.herokuapp.com/notificaciones.php";
 
     $preference->payer = $payer;
     $preference->payment_methods = $paymentMethods;
@@ -618,8 +617,8 @@
                                         </h3>
                                     </div>
                                     <form action="/procesar-pago" method="POST">
-                                        <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-button-label="Pagar la compra" data-preference-id="<?php echo $preference->id; ?>">
-                                        </script>
+                                        <!--<script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js" data-button-label="Pagar la compra" data-preference-id="<?php echo $preference->id; ?>">
+                                        </script> -->
                                         <a href="<?php echo $preference->init_point; ?>">Pagar la compra</a>
                                     </form>
                                 </div>
