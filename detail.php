@@ -25,6 +25,18 @@
         ),
         "installments" => 6
     );
+
+    $preference->back_urls = array(
+        //"success" => "https://julian-rp-mp-ecommerce-php.herokuapp.com/success.php",
+        //"failure" => "https://julian-rp-mp-ecommerce-php.herokuapp.com/failure.php",
+        //"pending" => "https://julian-rp-mp-ecommerce-php.herokuapp.com/pending.php"
+
+        "success" => "http://localhost/mp-ecommerce-php/success.php",
+        "failure" => "http://localhost/mp-ecommerce-php/failure.php",
+        "pending" => "http://localhost/mp-ecommerce-php/pending.php"
+
+    );
+    $preference->auto_return = "approved";
     
     
     
@@ -42,7 +54,7 @@
         "street_number" => 123,
         "zip_code" => "1111"
     );
-    $payer->surname = "Landa";
+    
     
     $item = new MercadoPago\Item();
     if (isset($_POST['img']) && isset($_POST['title']) && isset($_POST['price']) && isset($_POST['unit'])) {
@@ -56,12 +68,10 @@
 
         
     } else {
-        
+        echo("Entre al else");
     }
 
-    $item->title = 'Mi producto';
-    $item->quantity = 1;
-    $item->unit_price = 75.56;
+    $preference->external_reference="rodriguezpetzjulian@gmail.com";
 
     $preference->payer = $payer;
     $preference->payment_methods = $paymentMethods;
